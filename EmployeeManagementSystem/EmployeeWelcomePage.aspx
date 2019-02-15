@@ -50,14 +50,14 @@
                     <td><asp:RequiredFieldValidator ID="validdob" runat="server" ControlToValidate="txtDob" ErrorMessage="Required" ForeColor="Red"></asp:RequiredFieldValidator></td>
                 </tr>                
                 <tr>
-                    <td>State: </td><td><asp:DropDownList ID="drpState" runat="server" datavaluefield="Course" Width="173px">
+                    <td>State: </td><td><asp:DropDownList CssClass="drp-state" ID="drpState" runat="server" datavaluefield="Course" Width="173px">
                         <asp:ListItem Text="Maharashtra" Value="Maharashtra"></asp:ListItem>
                         <asp:ListItem Text="Telangana" Value="Telangana"></asp:ListItem>
                                          </asp:DropDownList></td>
                     <td><asp:RequiredFieldValidator InitialValue="-1" ID="validcourse" runat="server" ControlToValidate="drpState" ErrorMessage="Required!" ForeColor="Red"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
-                    <td>City: </td><td><asp:DropDownList ID="drpCity" runat="server" datavaluefield="Course" Width="173px">
+                    <td>City: </td><td><asp:DropDownList CssClass="drp-city" ID="drpCity" runat="server" datavaluefield="Course" Width="173px">
                        <asp:ListItem Text="Nagpur" Value="Nagpur"></asp:ListItem>
                         <asp:ListItem Text="Hyedrabad" Value="Hyedrabad"></asp:ListItem>
                         <asp:ListItem Text="Pune" Value="Pune"></asp:ListItem>
@@ -91,6 +91,18 @@
         box-shadow:2px 2px 2px 2px;
         width:50%;
     }
+        input {
+            border-radius: 5px;
+            height: 28px;
+        }
+        .drp-state {
+            border-radius: 5px;
+            height: 28px
+        }
+        .drp-city {
+            border-radius: 5px;
+            height: 28px
+        }
 
 </style>
 </asp:Content>
