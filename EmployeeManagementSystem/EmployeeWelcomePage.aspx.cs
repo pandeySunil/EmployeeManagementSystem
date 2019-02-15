@@ -29,7 +29,7 @@ namespace EmployeeManagementSystem
 
         protected void btn1_Click(object sender, EventArgs e)
         {
-            var connectionString = "Data Source=DESKTOP-6G1H7Q6;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
+            var connectionString = "Data Source=.;Initial Catalog=YH1008679DT\\SQLEXPRESS2014;Integrated Security=True";
             int userId = 0;
 
             using (SqlConnection con = new SqlConnection(connectionString))
