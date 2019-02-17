@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EmployeesList.aspx.cs" Inherits="EmployeeManagementSystem.EmployeesList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EmployeesList.aspx.cs" Inherits="EmployeeManagementSystem.EmployeesList" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
@@ -11,6 +11,14 @@
         <div>
         </div>
         <asp:GridView ID="EmployeeListGridView" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <Columns>
+                    <asp:ButtonField ButtonType="Button" CommandName="Select" HeaderText="NewBotton" ShowHeader="True" Text="NewBotton" />
+                     <asp:TemplateField>
+            <ItemTemplate>
+                <asp:Button Text="Select" runat="server" CommandName="Select" CommandArgument="<%# Container.DataItemIndex %>" OnClick="UpdateEmp" />
+            </ItemTemplate>
+        </asp:TemplateField>
+                </Columns>
             <AlternatingRowStyle BackColor="White" />
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

@@ -24,53 +24,114 @@ namespace EmployeeManagementSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                //Response.Redirect("~/EmployeeWelcomePage?name" + name + "&userName" + userName + "&password"
+                //   + password + "&email" + email + "&mobile" + mobile + "&gender" + gender + "&doB" + doB + "&state" + state + "&city"
+                //   + city + "&nationality" + nationality);
+                txtFristName.Text = Request.QueryString["name"];
+                txtUserName.Text = Request.QueryString["userName"];
+                txtPwd.Text = Request.QueryString["password"];
+                txtEmail.Text = Request.QueryString["email"];
+                txtMobile.Text = Request.QueryString["mobile"];
+                //RadioButtonList. = Request.QueryString["gender"];
+                txtDob.Text = Request.QueryString["doB"];
+                drpState.SelectedValue = Request.QueryString["state"];
+                drpCity.SelectedValue = Request.QueryString["city"];
+                //ch.Text = Request.QueryString["nationality"];
+                btn1.Text = "Update Record";
+            }
+
         }
 
         protected void btn1_Click(object sender, EventArgs e)
         {
-            var connectionString = "Data Source=.;Initial Catalog=YH1008679DT\\SQLEXPRESS2014;Integrated Security=True";
-            int userId = 0;
-
-            using (SqlConnection con = new SqlConnection(connectionString))
+            if (btn1.Text == "Update Record") { UpdateRecord(); }
+            else
             {
-                using (SqlCommand cmd = new SqlCommand("Insert_User"))
+                var connectionString = "Data Source=.;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
+                //"Data Source=YH1008679DT\\SQLEXPRESS2014;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
+                int userId = 0;
+
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    using (SqlCommand cmd = new SqlCommand("Insert_User"))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Name", txtFristName.Text + "" + txtLastName);
-                        cmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Password", txtPwd.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Gender", RadioButtonList1.SelectedValue);
-                        cmd.Parameters.AddWithValue("@DOB", Convert.ToString(txtDob));
-                        cmd.Parameters.AddWithValue("@State", drpState.SelectedValue);
-                        cmd.Parameters.AddWithValue("@City", drpCity.SelectedValue);
-                        cmd.Parameters.AddWithValue("@Nationality", checkNationality.Checked.ToString());
-                        cmd.Parameters.AddWithValue("@Active", 1);
-                        cmd.Connection = con;
-                        con.Open();
-                        userId = Convert.ToInt32(cmd.ExecuteScalar());
-                        con.Close();
+                        using (SqlDataAdapter sda = new SqlDataAdapter())
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Name", txtFristName.Text + "" + txtLastName);
+                            cmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Password", txtPwd.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Gender", RadioButtonList1.SelectedValue);
+                            cmd.Parameters.AddWithValue("@DOB", Convert.ToString(txtDob));
+                            cmd.Parameters.AddWithValue("@State", drpState.SelectedValue);
+                            cmd.Parameters.AddWithValue("@City", drpCity.SelectedValue);
+                            cmd.Parameters.AddWithValue("@Nationality", checkNationality.Checked.ToString());
+                            cmd.Parameters.AddWithValue("@Active", 1);
+                            cmd.Connection = con;
+                            con.Open();
+                            userId = Convert.ToInt32(cmd.ExecuteScalar());
+                            con.Close();
+                        }
+                    }
+                    string message = string.Empty;
+                    switch (userId)
+                    {
+                        case -1:
+                            message = "Username already exists.\\nPlease choose a different username.";
+                            break;
+                        case -2:
+                            message = "Supplied email address has already been used.";
+                            break;
+                        default:
+                            message = "Registration successful.\\nUser Id: " + userId.ToString();
+                            break;
+                    }
+                    ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + message + "');", true);
+                }
+            }
+        }
+        private void UpdateRecord()
+        {
+
+            var connectionString = "Data Source=.;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
+            //"Data Source=YH1008679DT\\SQLEXPRESS2014;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("Update_User"))
+                    {
+                        using (SqlDataAdapter sda = new SqlDataAdapter())
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Name", txtFristName.Text + "" + txtLastName);
+                            cmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
+
+                            cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Gender", RadioButtonList1.SelectedValue);
+                            cmd.Parameters.AddWithValue("@DOB", Convert.ToString(txtDob));
+                            cmd.Parameters.AddWithValue("@State", drpState.SelectedValue);
+                            cmd.Parameters.AddWithValue("@City", drpCity.SelectedValue);
+                            cmd.Parameters.AddWithValue("@Nationality", checkNationality.Checked.ToString());
+                            cmd.Parameters.AddWithValue("@Active", 1);
+                            cmd.Connection = con;
+                            con.Open();
+
+                        }
                     }
                 }
-                string message = string.Empty;
-                switch (userId)
-                {
-                    case -1:
-                        message = "Username already exists.\\nPlease choose a different username.";
-                        break;
-                    case -2:
-                        message = "Supplied email address has already been used.";
-                        break;
-                    default:
-                        message = "Registration successful.\\nUser Id: " + userId.ToString();
-                        break;
-                }
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + message + "');", true);
+                    }
+            catch (Exception Ex)
+            {
+
+
             }
+
         }
     }
 }

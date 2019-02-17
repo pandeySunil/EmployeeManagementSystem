@@ -22,9 +22,9 @@ namespace EmployeeManagementSystem
         {
             try
             {
-                lblError.Text = "";
-                string username = txtUserName.Text;
-                string password = txtPassword.Text;
+               // lblError.Text = "";
+                string username = txtPassword.Text;
+                string password = txtUserName.Text;
 
                 if (username == "admin" && password == "admin@123")
                 {
@@ -63,7 +63,7 @@ namespace EmployeeManagementSystem
             }
             catch (Exception ex)
             {
-                lblError.Text = "Error: " + ex.Message;
+               // lblError.Text = "Error: " + ex.Message;
             }
         }
     }

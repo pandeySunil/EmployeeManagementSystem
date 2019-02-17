@@ -1,11 +1,13 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMasterPage.master.cs" Inherits="EmployeeManagementSystem.AdminMasterPage" %>
-<%--<%@ Register Src="~/AdminMainMenu.ascx" TagPrefix="uc2" TagName="mymenu" %>--%>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="EmployeeManagementSystem.MasterPage" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+
+<html>
 <head runat="server">
     <title></title>
-    <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
-     <meta charset="utf-8">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
@@ -32,27 +34,23 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     
-    <asp:ContentPlaceHolder id="head" runat="server">
-    </asp:ContentPlaceHolder>
 </head>
 <body>
-    <body style="background-image: linear-gradient(to right, red,orange,yellow,green,blue); ">
    
-      <div class="wrapper" style="float:left;width:20%;padding-top:0px">
+      <div class="wrapper">
         <!-- Sidebar Holder -->
-        <nav id="sidebar"style="min-height:768px
-">
+        <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Euphoria Labs</h3>
+                <h3>Bootstrap Sidebar</h3>
             </div>
 
             <ul class="list-unstyled components">
-                <p>Welcome</p>
+                <p>Dummy Heading</p>
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="~/AdminWelcome.aspx">Home 1</a>
+                            <a href="#">Home 1</a>
                         </li>
                         <li>
                             <a href="#">Home 2</a>
@@ -85,21 +83,39 @@
                 </li>
             </ul>
 
-            
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                </li>
+            </ul>
         </nav>
 
         <!-- Page Content Holder -->
         
-    <form id="form1" runat="server">
-    <div>
-
-    <%-- <uc1:MyLogo ID="MyLogo1" runat="server" />--%>
-       <%-- <uc2:mymenu ID="MyMenu1" runat="server" />--%>
-
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
     </div>
+     <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
     </form>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
 </body>
 </html>

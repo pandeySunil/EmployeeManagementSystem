@@ -136,6 +136,14 @@
     <Content Include="About.aspx" />
     <Content Include="AdminMainMenu.ascx" />
     <Content Include="AdminWelcomePage.aspx" />
+    <Content Include="assets\css\Basic-Header.css" />
+    <Content Include="assets\css\Header-Blue.css" />
+    <Content Include="assets\css\Header-Icons.css" />
+    <Content Include="assets\css\Header-Nightsky.css" />
+    <Content Include="assets\css\Header-Picture.css" />
+    <Content Include="assets\img\iphone.svg" />
+    <Content Include="assets\img\nightsky.jpg" />
+    <Content Include="assets\img\skyscraper.jpg" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -156,6 +164,7 @@
     </Content>
     <Content Include="Index.aspx" />
     <Content Include="MasterPage.Master" />
+    <Content Include="style5.css" />
     <Content Include="vendor\datepicker\daterangepicker.css" />
     <Content Include="vendor\datepicker\daterangepicker.js" />
     <Content Include="vendor\datepicker\moment.min.js" />

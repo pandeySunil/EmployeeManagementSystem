@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMasterPage.master.cs" Inherits="EmployeeManagementSystem.AdminMasterPage" %>
-<%--<%@ Register Src="~/AdminMainMenu.ascx" TagPrefix="uc2" TagName="mymenu" %>--%>
+<%@ Register Src="~/AdminMainMenu.ascx" TagPrefix="uc2" TagName="mymenu" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -52,7 +52,7 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="~/AdminWelcome.aspx">Home 1</a>
+                            <a href="#">Home 1</a>
                         </li>
                         <li>
                             <a href="#">Home 2</a>
@@ -94,7 +94,7 @@
     <div>
 
     <%-- <uc1:MyLogo ID="MyLogo1" runat="server" />--%>
-       <%-- <uc2:mymenu ID="MyMenu1" runat="server" />--%>
+        <uc2:mymenu ID="MyMenu1" runat="server" />
 
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         

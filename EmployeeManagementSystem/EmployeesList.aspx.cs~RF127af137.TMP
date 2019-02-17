@@ -132,24 +132,5 @@ namespace EmployeeManagementSystem
         {
 
         }
-        protected void UpdateEmp(object sender, EventArgs e) {
-            Button btn = (Button)sender;
-            GridViewRow selectedRow = (GridViewRow)btn.NamingContainer;
-            string name = selectedRow.Cells[2].Text;
-            string userName = selectedRow.Cells[3].Text;
-            string password = selectedRow.Cells[4].Text;
-            string email = selectedRow.Cells[5].Text;
-            string mobile = selectedRow.Cells[6].Text;
-            string gender = selectedRow.Cells[7].Text;
-            string doB = selectedRow.Cells[8].Text;
-            string state = selectedRow.Cells[9].Text;
-            string city = selectedRow.Cells[10].Text;
-            string nationality = selectedRow.Cells[11].Text;
-            Response.Redirect("~/EmployeeWelcomePage?name=" + name + "&userName=" + userName + "&password="
-               +password+ "&email="+email+"&mobile="+mobile+"&gender="+gender+"&doB="+doB+"&state="+state+"&city="
-               +city+"&nationality="+nationality);
-            
-        }
-       
     }
 }
