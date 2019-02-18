@@ -24,7 +24,7 @@ namespace EmployeeManagementSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!(Request.QueryString["name"]==null))
             {
                 //Response.Redirect("~/EmployeeWelcomePage?name" + name + "&userName" + userName + "&password"
                 //   + password + "&email" + email + "&mobile" + mobile + "&gender" + gender + "&doB" + doB + "&state" + state + "&city"
@@ -39,7 +39,11 @@ namespace EmployeeManagementSystem
                 drpState.SelectedValue = Request.QueryString["state"];
                 drpCity.SelectedValue = Request.QueryString["city"];
                 //ch.Text = Request.QueryString["nationality"];
+                int UserId = Convert.ToInt32(Request.QueryString["Id"]);
                 btn1.Text = "Update Record";
+                txtPwd.Visible = false;
+                Textbox1.Visible = false;
+
             }
 
         }
@@ -49,8 +53,8 @@ namespace EmployeeManagementSystem
             if (btn1.Text == "Update Record") { UpdateRecord(); }
             else
             {
-                var connectionString = "Data Source=.;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
-                //"Data Source=YH1008679DT\\SQLEXPRESS2014;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
+                var connectionString = /*"Data Source=.;Initial Catalog=EmployeeManagementDb;Integrated Security=True";*/
+                "Data Source=YH1008679DT\\SQLEXPRESS2014;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
                 int userId = 0;
 
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -60,17 +64,17 @@ namespace EmployeeManagementSystem
                         using (SqlDataAdapter sda = new SqlDataAdapter())
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Name", txtFristName.Text + "" + txtLastName);
+                            cmd.Parameters.AddWithValue("@Name", txtFristName.Text);
                             cmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
                             cmd.Parameters.AddWithValue("@Password", txtPwd.Text.Trim());
                             cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
                             cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.Trim());
                             cmd.Parameters.AddWithValue("@Gender", RadioButtonList1.SelectedValue);
-                            cmd.Parameters.AddWithValue("@DOB", Convert.ToString(txtDob));
+                            cmd.Parameters.AddWithValue("@DOB", Convert.ToString(txtDob.Text));
                             cmd.Parameters.AddWithValue("@State", drpState.SelectedValue);
                             cmd.Parameters.AddWithValue("@City", drpCity.SelectedValue);
                             cmd.Parameters.AddWithValue("@Nationality", checkNationality.Checked.ToString());
-                            cmd.Parameters.AddWithValue("@Active", 1);
+                            cmd.Parameters.AddWithValue("@Active",1 );
                             cmd.Connection = con;
                             con.Open();
                             userId = Convert.ToInt32(cmd.ExecuteScalar());
@@ -97,8 +101,8 @@ namespace EmployeeManagementSystem
         private void UpdateRecord()
         {
 
-            var connectionString = "Data Source=.;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
-            //"Data Source=YH1008679DT\\SQLEXPRESS2014;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
+            var connectionString = /*"Data Source=.;Initial Catalog=EmployeeManagementDb;Integrated Security=True";*/
+            "Data Source=YH1008679DT\\SQLEXPRESS2014;Initial Catalog=EmployeeManagementDb;Integrated Security=True";
             try
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -107,25 +111,27 @@ namespace EmployeeManagementSystem
                     {
                         using (SqlDataAdapter sda = new SqlDataAdapter())
                         {
+                            
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@Name", txtFristName.Text + "" + txtLastName);
+                            cmd.Parameters.AddWithValue("@Name", txtFristName.Text);
                             cmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
 
                             cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
                             cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.Trim());
                             cmd.Parameters.AddWithValue("@Gender", RadioButtonList1.SelectedValue);
-                            cmd.Parameters.AddWithValue("@DOB", Convert.ToString(txtDob));
+                            cmd.Parameters.AddWithValue("@DOB", Convert.ToString(txtDob.Text));
                             cmd.Parameters.AddWithValue("@State", drpState.SelectedValue);
                             cmd.Parameters.AddWithValue("@City", drpCity.SelectedValue);
                             cmd.Parameters.AddWithValue("@Nationality", checkNationality.Checked.ToString());
-                            cmd.Parameters.AddWithValue("@Active", 1);
+                            cmd.Parameters.AddWithValue("@Id", Convert.ToInt32(Request.QueryString["Id"]));
                             cmd.Connection = con;
                             con.Open();
-
+                            cmd.ExecuteScalar();
+                            con.Close();
                         }
                     }
                 }
-                    }
+             }
             catch (Exception Ex)
             {
 

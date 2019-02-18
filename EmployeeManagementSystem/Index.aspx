@@ -19,7 +19,7 @@
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						
-						<asp:TextBox ID="txtPassword" runat="server" 
+						<asp:TextBox  ID="txtPassword" runat="server" 
            class="form-control" placeholder="username"></asp:TextBox>
 					</div>
 					<div class="input-group form-group">

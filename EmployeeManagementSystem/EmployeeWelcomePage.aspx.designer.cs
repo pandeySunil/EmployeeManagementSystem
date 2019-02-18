@@ -40,24 +40,6 @@ namespace EmployeeManagementSystem {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator validfname;
         
         /// <summary>
-        /// txtLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLastName;
-        
-        /// <summary>
-        /// validlname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator validlname;
-        
-        /// <summary>
         /// txtUserName control.
         /// </summary>
         /// <remarks>

@@ -6,16 +6,20 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
+<body style ="background-image: linear-gradient(to right, red,orange,yellow,green,blue); ">
     <form id="form1" runat="server">
         <div>
         </div>
         <asp:GridView ID="EmployeeListGridView" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
             <Columns>
-                    <asp:ButtonField ButtonType="Button" CommandName="Select" HeaderText="NewBotton" ShowHeader="True" Text="NewBotton" />
                      <asp:TemplateField>
             <ItemTemplate>
-                <asp:Button Text="Select" runat="server" CommandName="Select" CommandArgument="<%# Container.DataItemIndex %>" OnClick="UpdateEmp" />
+                <asp:Button Text="Update" runat="server" CommandName="Select" CommandArgument="<%# Container.DataItemIndex %>" OnClick="UpdateEmp" />
+            </ItemTemplate>
+        </asp:TemplateField>
+         <asp:TemplateField>
+             <ItemTemplate>
+                <asp:Button Text="Delete" runat="server" CommandName="Select" CommandArgument="<%# Container.DataItemIndex %>" OnClick="DeleteEmp" />
             </ItemTemplate>
         </asp:TemplateField>
                 </Columns>

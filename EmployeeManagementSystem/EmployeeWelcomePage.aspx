@@ -8,19 +8,19 @@
    <head>
         <title>Registration Page</title>
    </head>
-   <body>
+   <body style="background-image: linear-gradient(to right, red,orange,yellow,green,blue); ">
         <form id="f1" method="post" runat="server" class="" >
             <fieldset class="form-table">
             <legend>Registration Form</legend>
             <table style="margin:0 auto" >            
                 <tr>
-                     <td>First Name:</td><td> <asp:textbox id="txtFristName" runat="server" ></asp:textbox></td>
+                     <td>Name:</td><td> <asp:textbox id="txtFristName" runat="server" ></asp:textbox></td>
                      <td> <asp:RequiredFieldValidator ID="validfname" runat="server" ControlToValidate="txtFristName" ErrorMessage="Required!" ForeColor="Red"></asp:RequiredFieldValidator></td>
                 </tr>
-                <tr>
+                <%--<tr>
                     <td>Last Name:</td><td> <asp:textbox id="txtLastName" runat="server" ></asp:textbox></td>
                     <td><asp:RequiredFieldValidator ID="validlname" runat="server" ControlToValidate="txtLastName" ErrorMessage="Required!" ForeColor="Red"></asp:RequiredFieldValidator></td>
-                </tr>
+                </tr>--%>
                 <tr>
                     <td>User Name:</td><td> <asp:textbox id="txtUserName" runat="server"></asp:textbox></td>
                     <td><asp:RequiredFieldValidator ID="validuser" runat="server" ControlToValidate="txtUserName" ErrorMessage="Required!" ForeColor="Red"></asp:RequiredFieldValidator></td>
